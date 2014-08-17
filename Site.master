@@ -1,0 +1,83 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="SiteMaster, App_Web_gywsmccp" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %></title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder runat="server">           
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <link rel="stylesheet" href="//assets.ziggeo.com/css/ziggeo-betajs-player.min.css" />
+<script src="//assets.ziggeo.com/js/ziggeo-jquery-json2-betajs-player.min.js"></script>
+<script>ZiggeoApi.token = "5e94ab5e64d63ef8300222b7084e7427";</script>
+</head>
+<body>
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+        </Scripts>
+    </asp:ScriptManager>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title"><a runat="server" href="~/">
+                    <img src="/Images/luckycut.png" /></a></p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+                                <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" />
+                                </a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li><a runat="server" href="~/">Home</a></li>
+                         <li><a runat="server" href="~/EventsSocials">Events</a></li>
+                         <li><a runat="server" href="~/Video">Video</a></li>
+                         <li><a runat="server" href="~/Volunteer">Volunteer</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; <%: DateTime.Now.Year %> - LuckyCut.com
+                </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>
